@@ -1,9 +1,7 @@
 let quantidadeCartas = 0;
 let cartas = [];
 let embaralhadas = [];
-
-let contadorComparacoes = 0;
-
+let intervalo;
 
 const versosCartas = [
     "imgs/bobrossparrot.gif",
@@ -16,21 +14,21 @@ const versosCartas = [
 ]
 
 
-
 function iniciarGame(){
     
-    quantidadeCartas = Number(prompt('com quantas cartas deseja jogar?'));
+    quantidadeCartas = Number(prompt('Com quantas cartas deseja jogar? Insira um número par, entre 4 e 14.'));
 
     if (quantidadeCartas >= 4 && quantidadeCartas <= 14 && quantidadeCartas %2 === 0){
        adicionarCartas(quantidadeCartas);
+        intervalo = setInterval(cronometro, 1000);
     } else {
         alert('A quantidade deve ser um número par entre 4 e 14!');
         iniciarGame();
         
     }
 }
-iniciarGame();
 
+iniciarGame();
 
 
 function adicionarCartas(numero) {
@@ -124,10 +122,20 @@ function comparacaoDeCartas() {
 function fimDeJogo(){
 
     if (acertos === quantidadeCartas/2){
-        alert(`Parabéns! Você ganhou em ${jogadas} jogadas!`);
+        clearInterval(intervalo);
+        alert(`Parabéns! Você ganhou em ${jogadas} jogadas! Seu tempo foi de ${segundos} segundos!`);
+        
         const jogarNovamente = prompt("Deseja jogar novamente?");
         if (jogarNovamente === 'sim' || jogarNovamente === 'SIM' || jogarNovamente === 'Sim'){
             location.reload();
         }
     }
+    
+}
+
+let segundos = 0;
+function cronometro(){
+    segundos++;
+    const endereco = document.querySelector('.tempo');
+    endereco.innerHTML = segundos;
 }
