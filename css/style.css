@@ -24,10 +24,17 @@ body{
 
 }
 
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 .card{
     width: 117px;
     height: 146px;
     position: relative;
+    margin: 0 34px 34px 34px;
     
 }
 
