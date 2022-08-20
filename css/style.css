@@ -42,6 +42,11 @@ ul {
     width: 100px;
     height: 100px;
 }
+.back img{
+    width: 50px;
+    height: auto;
+    
+}
 
 .face{
     width: 100%;
@@ -62,10 +67,10 @@ ul {
     transform: rotateY(180deg);
   }
 
-  .card:hover .back {
+  .virada .back {
     transform: rotateY(0deg);
   }
 
-  .card:hover .front {
+  .virada .front {
     transform: rotateY(-180deg);
   }

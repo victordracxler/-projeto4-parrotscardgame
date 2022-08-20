@@ -1,5 +1,5 @@
 let quantidadeCartas = 0;
-const cartas = [];
+let cartas = [];
 let embaralhadas = [];
 
 
@@ -16,6 +16,7 @@ const versosCartas = [
 
 
 function iniciarGame(){
+    
     quantidadeCartas = Number(prompt('com quantas cartas deseja jogar?'));
 
     if (quantidadeCartas >= 4 && quantidadeCartas <= 14 && quantidadeCartas %2 === 0){
@@ -33,12 +34,13 @@ iniciarGame();
 function adicionarCartas(numero) {
     const ul = document.querySelector('ul');
     ul.innerHTML = '';
+    cartas= [];
 
 
-    for (let i = 0; i < numero ; i = i +2){
+    for (let i = 0; i < numero/2 ; i++){
         cartas.push(`
         <li>
-            <div class="card">
+            <div onclick="virar(this)" class="card">
                 <div class="front face"><img src="imgs/front.png" alt="Frente da carta"></div>
                 <div class="back face"><img src=${versosCartas[i]} alt="Verso da carta"></div>
             </div>
@@ -46,7 +48,7 @@ function adicionarCartas(numero) {
         `);
         cartas.push(`
         <li>
-            <div class="card">
+            <div onclick="virar(this)" class="card">
                 <div class="front face"><img src="imgs/front.png" alt="Frente da carta"></div>
                 <div class="back face"><img src=${versosCartas[i]} alt="Verso da carta"></div>
             </div>
@@ -64,4 +66,9 @@ function adicionarCartas(numero) {
 
 function comparador() { 
 	return Math.random() - 0.5; 
+}
+
+function virar(cartinha) {    
+    const endereco = cartinha.classList;
+    endereco.toggle('virada');
 }
