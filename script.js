@@ -2,6 +2,8 @@ let quantidadeCartas = 0;
 let cartas = [];
 let embaralhadas = [];
 
+let contadorComparacoes = 0;
+
 
 const versosCartas = [
     "imgs/bobrossparrot.gif",
@@ -68,7 +70,64 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
-function virar(cartinha) {    
-    const endereco = cartinha.classList;
-    endereco.toggle('virada');
+
+let primeira;
+let segunda;
+let viradas = [];
+
+function virar(clicada) {    
+   // const endereco = clicada.classList;
+   // endereco.toggle('virada');
+
+   if (viradas.length === 0){
+    if( clicada.classList.contains ('virada') === false){
+        clicada.classList.add('virada');
+        primeira = clicada;
+        viradas.push(clicada.innerHTML);
+       }
+   }else if (viradas.length === 1){
+    if (clicada.classList.contains ('virada') === false){
+        clicada.classList.add('virada');
+        segunda = clicada;
+        viradas.push(clicada.innerHTML);        
+
+        setTimeout(comparacaoDeCartas,1000)
+    }
+   }
+}
+
+let jogadas = 0;
+let acertos = 0;
+
+function comparacaoDeCartas() {
+    jogadas++;
+
+    if(viradas.length === 2){
+        if( viradas[0] === viradas[1]){
+            primeira = '';
+            segunda = '';
+            viradas = [];
+            acertos++;
+        } else {
+            primeira.classList.remove('virada');
+            segunda.classList.remove('virada');
+            primeira = '';
+            segunda = '';
+            viradas = [];
+        }
+    }
+
+    fimDeJogo();
+}
+
+
+function fimDeJogo(){
+
+    if (acertos === quantidadeCartas/2){
+        alert(`Parabéns! Você ganhou em ${jogadas} jogadas!`);
+        const jogarNovamente = prompt("Deseja jogar novamente?");
+        if (jogarNovamente === 'sim' || jogarNovamente === 'SIM' || jogarNovamente === 'Sim'){
+            location.reload();
+        }
+    }
 }

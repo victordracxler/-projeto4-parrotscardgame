@@ -17,10 +17,11 @@ body{
 .header {
     
     margin: 40px auto 47px auto;
-    height: 63px;
+    height: auto;
     font-size: 56px;
     font-weight: 700;
     color: #75b79e;
+    text-align: center;
 
 }
 
