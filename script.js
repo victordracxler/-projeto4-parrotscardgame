@@ -72,6 +72,7 @@ function comparador() {
 let primeira;
 let segunda;
 let viradas = [];
+let jogadas = 0;
 
 function virar(clicada) {    
    // const endereco = clicada.classList;
@@ -80,12 +81,14 @@ function virar(clicada) {
    if (viradas.length === 0){
     if( clicada.classList.contains ('virada') === false){
         clicada.classList.add('virada');
+        jogadas++;
         primeira = clicada;
         viradas.push(clicada.innerHTML);
        }
    }else if (viradas.length === 1){
     if (clicada.classList.contains ('virada') === false){
         clicada.classList.add('virada');
+        jogadas++;
         segunda = clicada;
         viradas.push(clicada.innerHTML);        
 
@@ -94,12 +97,11 @@ function virar(clicada) {
    }
 }
 
-let jogadas = 0;
+
 let acertos = 0;
 
 function comparacaoDeCartas() {
-    jogadas++;
-
+   
     if(viradas.length === 2){
         if( viradas[0] === viradas[1]){
             primeira = '';
